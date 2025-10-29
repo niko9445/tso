@@ -1,0 +1,459 @@
+/* ==================== */
+/* Базовые стили модалки */
+/* ==================== */
+
+/* Оверлей с анимацией */
+.cmn-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  animation: cmn-fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes cmn-fadeIn {
+  to { opacity: 1; }
+}
+
+/* Основное окно */
+.cmn-modal {
+  background: #2a2a2a;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 
+    0 6px 25px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transform: translateY(20px) scale(0.98);
+  animation: cmn-modalAppear 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.1) forwards;
+  margin: 20px;
+  transition: min-height 0.3s ease;
+}
+
+@keyframes cmn-modalAppear {
+  to { transform: translateY(0) scale(1); }
+}
+
+/* Анимация закрытия */
+.cmn-modal.closing {
+  animation: cmn-modalDisappear 0.2s ease-in forwards;
+}
+
+@keyframes cmn-modalDisappear {
+  to { transform: translateY(30px) scale(0.95); opacity: 0; }
+}
+
+/* Заголовок */
+.cmn-modal-header {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid #3a3a3a;
+  background: #252525;
+}
+
+.cmn-modal-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1;
+}
+
+/* Иконки в заголовке */
+.cmn-header-icon {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Кнопка закрытия */
+.cmn-modal-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #aaa;
+}
+
+.cmn-modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+/* Контент */
+.cmn-modal-content {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Группы полей */
+.cmn-form-group {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.cmn-form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.cmn-form-row .cmn-form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.cmn-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #bbb;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Поля ввода */
+.cmn-form-input,
+.cmn-form-select,
+.cmn-date-picker-input {
+  width: 100%;
+  padding: 10px 12px;
+  background: #3a3a3a;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  transition: all 0.25s;
+}
+
+.cmn-form-input:focus,
+.cmn-form-select:focus,
+.cmn-date-picker-input:focus {
+  outline: none;
+  border-color: #6c5ce7;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+  background: #3f3f3f;
+}
+
+/* Стили для select */
+.cmn-form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+.cmn-form-select option {
+  background: #2a2a2a;
+  color: #fff;
+  padding: 8px;
+}
+
+/* Textarea */
+.cmn-form-input[type="textarea"] {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* DatePicker */
+.cmn-date-picker-container {
+  position: relative;
+  width: 100%;
+}
+
+.cmn-date-picker-container .react-datepicker-wrapper {
+  width: 100%;
+}
+
+.cmn-calendar-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: none;
+}
+
+/* Стили для ошибок */
+.cmn-form-group.has-error label .cmn-required-mark {
+  color: #ff5252;
+}
+
+.cmn-form-group.has-error .cmn-form-input,
+.cmn-form-group.has-error .cmn-form-select,
+.cmn-form-group.has-error .cmn-date-picker-input {
+  border-color: #ff5252 !important;
+  background-color: rgba(255, 82, 82, 0.1) !important;
+  animation: cmn-vibrate 0.4s linear;
+}
+
+.cmn-error-message {
+  color: #ff5252;
+  font-size: 0.7rem;
+  margin-top: 4px;
+  font-weight: 500;
+  display: block;
+}
+
+@keyframes cmn-vibrate {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-3px); }
+  40%, 80% { transform: translateX(3px); }
+}
+
+/* Обязательные поля */
+.cmn-required-mark {
+  color: #ff5252;
+  margin-left: 3px;
+  font-weight: bold;
+}
+
+/* Футер */
+.cmn-modal-footer {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  border-top: 1px solid #3a3a3a;
+  background: #252525;
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+}
+
+/* Кнопки */
+.cmn-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 100px;
+  justify-content: center;
+}
+
+.cmn-btn-secondary {
+  background: #3a3a3a;
+  color: #ccc;
+}
+
+.cmn-btn-secondary:hover {
+  background: #444;
+  color: #fff;
+}
+
+.cmn-btn-add {
+  background: #4CAF50;
+  color: white;
+  box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
+}
+
+.cmn-btn-add:hover {
+  background: #43A047;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.cmn-btn-save {
+  background: #2196F3;
+  color: white;
+  box-shadow: 0 2px 10px rgba(33, 150, 243, 0.3);
+}
+
+.cmn-btn-save:hover {
+  background: #1E88E5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+}
+
+.cmn-btn-delete {
+  background: #ff5252;
+  color: white;
+  box-shadow: 0 2px 10px rgba(255, 82, 82, 0.3);
+}
+
+.cmn-btn-delete:hover {
+  background: #ff3543;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 82, 82, 0.4);
+}
+
+.cmn-btn:active {
+  transform: translateY(0);
+}
+
+/* Иконки кнопок */
+.cmn-btn-icon {
+  transition: transform 0.2s;
+}
+
+.cmn-btn:active .cmn-btn-icon {
+  transform: scale(0.9);
+}
+
+/* Модификаторы для разных модалок */
+.cmn-modal-add {
+  box-shadow: 0 0 0 2px #4CAF50, 0 4px 20px rgba(0,0,0,0.25);
+}
+
+.cmn-modal-edit {
+  box-shadow: 0 0 0 2px #2196F3, 0 4px 20px rgba(0,0,0,0.25);
+}
+
+.cmn-delete-modal {
+  box-shadow: 0 0 0 2px #ff5252, 0 4px 20px rgba(0,0,0,0.25);
+}
+
+/* Стили для DatePicker */
+.react-datepicker {
+  font-family: inherit;
+  background-color: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.react-datepicker__header {
+  background-color: #252525;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name,
+.react-datepicker__day {
+  color: #fff;
+}
+
+.react-datepicker__day:hover {
+  background-color: rgba(108, 92, 231, 0.3);
+}
+
+.react-datepicker__day--selected {
+  background-color: #6c5ce7;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .cmn-modal {
+    max-width: calc(100% - 40px);
+    margin: 10px;
+  }
+  
+  .cmn-form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .cmn-modal-footer {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .cmn-btn {
+    width: 100%;
+  }
+}
+
+/* Специфичные стили для модалки удаления */
+.cmn-delete-modal {
+  max-width: 400px;
+}
+
+.cmn-delete-modal .cmn-modal-header {
+  border-bottom: 1px solid rgba(255, 82, 82, 0.3);
+  background: linear-gradient(to right, #252525, #2a2a2a);
+}
+
+.cmn-danger-icon {
+  color: #ff5252;
+  font-size: 24px;
+  animation: cmn-pulse 2s infinite;
+  flex-shrink: 0; /* Фиксируем размер иконки */
+}
+
+.cmn-header-content {
+  display: flex;
+  align-items: center; /* Выравниваем иконку и текст по центру */
+  gap: 10px; /* Отступ между иконкой и текстом */
+}
+
+.cmn-warning-message {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.cmn-warning-message p {
+  color: #eee;
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+}
+
+.cmn-warning-subtext {
+  color: #ff5252;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Анимация иконки предупреждения */
+@keyframes cmn-pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Стили для кнопки удаления */
+.cmn-btn-delete {
+  position: relative;
+  overflow: hidden;
+}
+
+.cmn-btn-delete::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.cmn-btn-delete:focus:not(:active)::after {
+  animation: cmn-ripple 0.6s ease-out;
+}
+
+@keyframes cmn-ripple {
+  0% { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(20); opacity: 0; }
+}

@@ -1,0 +1,181 @@
+/* DeleteInvoiceModal.css */
+
+/* Оверлей */
+.invmoddel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  animation: invmoddel-fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes invmoddel-fadeIn {
+  to { opacity: 1; }
+}
+
+/* Основное окно */
+.invmoddel-modal {
+  background: #2a2a2a;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 450px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transform: translateY(20px) scale(0.98);
+  animation: invmoddel-appear 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.1) forwards;
+  margin: 20px;
+}
+
+@keyframes invmoddel-appear {
+  to { transform: translateY(0) scale(1); }
+}
+
+/* Специфичные стили для модалки удаления */
+.invmoddel-delete-modal {
+  max-width: 400px;
+}
+
+.invmoddel-delete-modal .invmoddel-header {
+  border-bottom: 1px solid rgba(255, 82, 82, 0.3);
+  background: linear-gradient(to right, #252525, #2a2a2a);
+}
+
+/* Заголовок */
+.invmoddel-header {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid #3a3a3a;
+  background: #252525;
+}
+
+.invmoddel-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1;
+}
+
+/* Контент */
+.invmoddel-content {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Футер */
+.invmoddel-footer {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  border-top: 1px solid #3a3a3a;
+  background: #252525;
+  flex-shrink: 0;
+}
+
+/* Кнопки */
+.invmoddel-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 100px;
+  justify-content: center;
+}
+
+.invmoddel-btn-secondary {
+  background: #3a3a3a;
+  color: #ccc;
+}
+
+.invmoddel-btn-secondary:hover {
+  background: #444;
+  color: #fff;
+}
+
+.invmoddel-btn-delete {
+  background: #ff5252;
+  color: white;
+  box-shadow: 0 2px 10px rgba(255, 82, 82, 0.3);
+}
+
+.invmoddel-btn-delete:hover {
+  background: #ff3543;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 82, 82, 0.4);
+}
+
+/* Иконки */
+.invmoddel-danger-icon {
+  color: #ff5252;
+  font-size: 24px;
+  animation: invmoddel-pulse 2s infinite;
+}
+
+@keyframes invmoddel-pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Сообщения */
+.invmoddel-warning-message {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.invmoddel-warning-message p {
+  color: #eee;
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+}
+
+.invmoddel-warning-subtext {
+  color: #ff5252;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* Кнопка закрытия */
+.invmoddel-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: #aaa;
+}
+
+.invmoddel-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}

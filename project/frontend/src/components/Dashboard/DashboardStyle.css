@@ -1,0 +1,47 @@
+/* src/pages/DashboardStyle.css */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #181818;
+  color: #fff;
+  transition: margin-left 0.3s ease;
+  margin-left: 250px; /* Ширина развернутого сайдбара */
+}
+
+.sidebar.collapsed ~ .dashboard-container {
+  margin-left: 60px; /* Ширина свернутого сайдбара */
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 20px;
+  background-color: #1c1c1c;
+  min-height: 100vh;
+}
+
+.dashboard-content {
+  background-color: #252525;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  
+  .sidebar.collapsed {
+    transform: translateX(0);
+    width: 60px;
+  }
+  
+  .dashboard-container {
+    margin-left: 0 !important;
+  }
+  
+  .sidebar.collapsed ~ .dashboard-container {
+    margin-left: 60px !important;
+  }
+}
